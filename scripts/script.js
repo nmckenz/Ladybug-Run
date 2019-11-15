@@ -24,11 +24,16 @@ caterpillar.drawFunction();
 
 $(".moveButton").mousedown(function () {
     const buttonType = $(this).attr("id");
+    // caterpillar.buttonAction(buttonType);
     if (buttonType === "runButton") {
-        caterpillar.drawFunction();
+        // caterpillar.drawFunction();
+        movementQueueArray.forEach(function(movement) {
+            caterpillar.buttonAction(movement)
+        });
+        movementQueueArray.length = 0;
     } else {
-        // caterpillar.buttonAction(buttonType);
         movementQueueArray.push(buttonType);
+        console.log(movementQueueArray);
     }
 });
 
@@ -63,8 +68,8 @@ caterpillar.buttonAction = (buttonType) => {
 // --------------------------------------------------------
 // array for tracking movement selections
 let movementQueueArray = [];
-movementQueueArray.push("hi");
-console.log(movementQueueArray);
+// movementQueueArray.push("hi");
+// console.log(movementQueueArray);
 
 
 
