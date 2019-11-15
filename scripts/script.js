@@ -22,9 +22,14 @@ caterpillar.drawFunction();
 // -----------------------------------------------------
 // creating move button functionality
 
-$(".moveButton").mousedown(function() {
+$(".moveButton").mousedown(function () {
     const buttonType = $(this).attr("id");
-    caterpillar.buttonAction(buttonType);
+    if (buttonType === "runButton") {
+        caterpillar.drawFunction();
+    } else {
+        // caterpillar.buttonAction(buttonType);
+        movementQueueArray.push(buttonType);
+    }
 });
 
 caterpillar.buttonAction = (buttonType) => {
@@ -34,7 +39,7 @@ caterpillar.buttonAction = (buttonType) => {
             caterpillarTrackingArray.splice(0, 1, newPosition);
         };
     } else if (buttonType === "downButton") {
-        if ((caterpillarTrackingArray[0] + 10) <= 100 ) {
+        if ((caterpillarTrackingArray[0] + 10) <= 100) {
             const newPosition = caterpillarTrackingArray[0] + 10;
             caterpillarTrackingArray.splice(0, 1, newPosition);
         };
@@ -60,6 +65,7 @@ caterpillar.buttonAction = (buttonType) => {
 let movementQueueArray = [];
 movementQueueArray.push("hi");
 console.log(movementQueueArray);
+
 
 
 
