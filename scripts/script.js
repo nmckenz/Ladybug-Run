@@ -2,63 +2,78 @@
 const caterpillar = {}
 // =======================================================
 
+
+
 // -------------------------------------------------------
 // toggle class for drawing caterpillar
 
-let caterpillarTrackingArray = ["15"];
-// caterpillarTrackingArray = caterpilllarTrackingArray.push("item15");
-console.log(caterpillarTrackingArray[0]);
+let caterpillarTrackingArray = ["91"];
 
 caterpillar.drawFunction = () => {
     $(".item").removeClass("draw");
     $(`.item${caterpillarTrackingArray[0]}`).toggleClass("draw");
-
 };
 
 caterpillar.drawFunction();
+// -------------------------------------------------------
 
 
 
 // -----------------------------------------------------
 // creating move button functionality
 
-
-// $(".moveButton").mousedown(caterpillar.buttonHandler);
-
-// caterpillar.buttonHandler = function() {
-//     console.log("button handler");
-//     const buttonType = $(this).attr("id");
-//     console.log(buttonType);
-// }
-
 $(".moveButton").mousedown(function() {
-    console.log("button handler");
-    console.log($(this).attr("id"));
     const buttonType = $(this).attr("id");
-    console.log("buttonType variable", buttonType);
-    // caterpillar.(buttonType);
-    caterpillar[buttonType]();
+    caterpillar.buttonAction(buttonType);
 });
 
-caterpillar.upButton = () => {
-    const newPosition = caterpillarTrackingArray[0] - 10;
-    if (newPosition > 0) {
-        caterpillarTrackingArray.splice(0, 1, newPosition);
-    };
-    console.log("upbutton tracking array", caterpillarTrackingArray[0]);
+caterpillar.buttonAction = (buttonType) => {
+    if (buttonType === "upButton") {
+        if ((caterpillarTrackingArray[0] - 10) > 0) {
+            const newPosition = caterpillarTrackingArray[0] - 10;
+            caterpillarTrackingArray.splice(0, 1, newPosition);
+        };
+    } else if (buttonType === "downButton") {
+        if ((caterpillarTrackingArray[0] + 10) <= 100 ) {
+            const newPosition = caterpillarTrackingArray[0] + 10;
+            caterpillarTrackingArray.splice(0, 1, newPosition);
+        };
+    } else if (buttonType === "leftButton") {
+        if ((caterpillarTrackingArray[0] - 1) % 10 != 0) {
+            const newPosition = caterpillarTrackingArray[0] - 1;
+            caterpillarTrackingArray.splice(0, 1, newPosition);
+        };
+    } else if (buttonType === "rightButton") {
+        if ((caterpillarTrackingArray[0] + 1) % 10 != 1) {
+            const newPosition = caterpillarTrackingArray[0] + 1;
+            caterpillarTrackingArray.splice(0, 1, newPosition);
+        };
+    }
     caterpillar.drawFunction();
 };
-
-// $("#upButton").mousedown(function() {
-//     console.log("up button registered")
-// })
 // ------------------------------------------------------
+
+
+
+// --------------------------------------------------------
+// array for tracking movement selections
+let movementQueueArray = [];
+movementQueueArray.push("hi");
+console.log(movementQueueArray);
+
+
+
+
+// -------------------------------------------------------
+
+
 
 // INIT===================================================
 caterpillar.init = () => {
-    console.log("hello world")
+    // console.log("hello world");
 };
 // =======================================================
+
 
 
 // DOCUMENT READY=========================================

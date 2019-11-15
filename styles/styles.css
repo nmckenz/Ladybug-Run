@@ -241,6 +241,7 @@ canvas {
 }
 
 .buttonWrapper {
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -252,6 +253,7 @@ canvas {
 
 .gridButtons button {
   padding: 10px 25px;
+  text-transform: uppercase;
 }
 
 .grid {
