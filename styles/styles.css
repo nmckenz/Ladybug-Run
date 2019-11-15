@@ -239,3 +239,36 @@ canvas {
   border: 1px solid #d3d3d3;
   background-color: #f1f1f1;
 }
+
+.buttonWrapper {
+  text-align: center;
+}
+
+.gridButtons {
+  border: 5px solid green;
+  margin: 0 auto;
+  display: inline-block;
+}
+
+.gridButtons button {
+  padding: 10px 25px;
+}
+
+.grid {
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (1fr)[10];
+      grid-template-columns: repeat(10, 1fr);
+  -ms-grid-rows: (1fr)[10];
+      grid-template-rows: repeat(10, 1fr);
+  margin: 0 auto;
+  margin-top: 10vh;
+  border: 1px solid red;
+  width: 500px;
+  height: 500px;
+}
+
+.draw {
+  background: green;
+  border-radius: 50%;
+}

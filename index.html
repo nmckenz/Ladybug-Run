@@ -7,18 +7,154 @@
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Document</title>
 </head>
-<body onload="startGame()">
+<body>
+<!-- <body onload="startGame()"> -->
+
+    <!-- <div class="canvasButtons">
+        <button onmousedown="moveUp()" onmouseup="stopMovement()" ontouchstart="moveUp()">UP</button>
+        <button onmousedown="moveDown()" onmouseup="stopMovement()" ontouchstart="moveDown()">DOWN</button>
+        <button onmousedown="moveLeft()" onmouseup="stopMovement()" ontouchstart="moveLeft()">LEFT</button>
+        <button onmousedown="moveRight()" onmouseup="stopMovement()" ontouchstart="moveRight()">RIGHT</button>
+
+    </div> -->
     
-    <script>
+    
+    <div class="grid">
+        <div class="item item1" value="1"></div>
+        <div class="item item2" value="2"></div>
+        <div class="item item3" value="3"></div>
+        <div class="item item4" value="4"></div>
+        <div class="item item5" value="5"></div>
+        <div class="item item6" value="6"></div>
+        <div class="item item7" value="7"></div>
+        <div class="item item8" value="8"></div>
+        <div class="item item9" value="9"></div>
+        <div class="item item10" value="10"></div>
+        <div class="item item11" value="11"></div>
+        <div class="item item12" value="12"></div>
+        <div class="item item13" value="13"></div>
+        <div class="item item14" value="14"></div>
+        <div class="item item15" value="15"></div>
+        <div class="item item16" value="16"></div>
+        <div class="item item17" value="17"></div>
+        <div class="item item18" value="18"></div>
+        <div class="item item19" value="19"></div>
+        <div class="item item20" value="20"></div>
+        <div class="item item21" value="21"></div>
+        <div class="item item22" value="22"></div>
+        <div class="item item23" value="23"></div>
+        <div class="item item24" value="24"></div>
+        <div class="item item25" value="25"></div>
+        <div class="item item26" value="26"></div>
+        <div class="item item27" value="27"></div>
+        <div class="item item28" value="28"></div>
+        <div class="item item29" value="29"></div>
+        <div class="item item30" value="30"></div>
+        <div class="item item31" value="31"></div>
+        <div class="item item32" value="32"></div>
+        <div class="item item33" value="33"></div>
+        <div class="item item34" value="34"></div>
+        <div class="item item35" value="35"></div>
+        <div class="item item36" value="36"></div>
+        <div class="item item37" value="37"></div>
+        <div class="item item38" value="38"></div>
+        <div class="item item39" value="39"></div>
+        <div class="item item40" value="40"></div>
+        <div class="item item41" value="41"></div>
+        <div class="item item42" value="42"></div>
+        <div class="item item43" value="43"></div>
+        <div class="item item44" value="44"></div>
+        <div class="item item45" value="45"></div>
+        <div class="item item46" value="46"></div>
+        <div class="item item47" value="47"></div>
+        <div class="item item48" value="48"></div>
+        <div class="item item49" value="49"></div>
+        <div class="item item50" value="50"></div>
+        <div class="item item51" value="51"></div>
+        <div class="item item52" value="52"></div>
+        <div class="item item53" value="53"></div>
+        <div class="item item54" value="54"></div>
+        <div class="item item55" value="55"></div>
+        <div class="item item56" value="56"></div>
+        <div class="item item57" value="57"></div>
+        <div class="item item58" value="58"></div>
+        <div class="item item59" value="59"></div>
+        <div class="item item60" value="60"></div>
+        <div class="item item61" value="61"></div>
+        <div class="item item62" value="62"></div>
+        <div class="item item63" value="63"></div>
+        <div class="item item64" value="64"></div>
+        <div class="item item65" value="65"></div>
+        <div class="item item66" value="66"></div>
+        <div class="item item67" value="67"></div>
+        <div class="item item68" value="68"></div>
+        <div class="item item69" value="69"></div>
+        <div class="item item70" value="70"></div>
+        <div class="item item71" value="71"></div>
+        <div class="item item72" value="72"></div>
+        <div class="item item73" value="73"></div>
+        <div class="item item74" value="74"></div>
+        <div class="item item75" value="75"></div>
+        <div class="item item76" value="76"></div>
+        <div class="item item77" value="77"></div>
+        <div class="item item78" value="78"></div>
+        <div class="item item79" value="79"></div>
+        <div class="item item80" value="80"></div>
+        <div class="item item81" value="81"></div>
+        <div class="item item82" value="82"></div>
+        <div class="item item83" value="83"></div>
+        <div class="item item84" value="84"></div>
+        <div class="item item85" value="85"></div>
+        <div class="item item86" value="86"></div>
+        <div class="item item87" value="87"></div>
+        <div class="item item88" value="88"></div>
+        <div class="item item89" value="89"></div>
+        <div class="item item90" value="90"></div>
+        <div class="item item91" value="91"></div>
+        <div class="item item92" value="92"></div>
+        <div class="item item93" value="93"></div>
+        <div class="item item94" value="94"></div>
+        <div class="item item95" value="95"></div>
+        <div class="item item96" value="96"></div>
+        <div class="item item97" value="97"></div>
+        <div class="item item98" value="98"></div>
+        <div class="item item99" value="99"></div>
+        <div class="item item100" value="100"></div>    
+        
+    </div>
+    
+    <div class="buttonWrapper">
+        <div class="gridButtons">
+            <button id="upButton" class="moveButton">UP</button>
+            <button id="downButton" class="moveButton">DOWN</button>
+            <button id="leftButton" class="moveButton">LEFT</button>
+            <button id="rightButton" class="moveButton">RIGHT</button>
+        </div>
+    </div>
+    
+    
+    <p>Caterpillar run ver1.0</p>
 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
+    <script src="./scripts/script.js"></script>
+    <!-- <script>
         let gamePiece;
-
+        let myUpButton;
+        let myDownButton;
+        let myLeftButton;
+        let myRightButton;
+        
         function startGame() {
             gameArena.start();
             redGamePiece = new component(30, 30, "red", 10, 120);
             greenGamePiece = new component(50, 50, "green", 400, 10)
+            
+            myUpButton = new component(30, 30, "black", 90, 240);
+            myDownButton = new component(30, 30, "grey", 130, 240);
+            myLeftButton = new component(30, 30, "blue", 50, 240);
+            myRightButton = new component(30, 30, "yellow", 170, 240);
         };
-
+        
         const gameArena = {
             canvas: document.createElement("canvas"),
             start: function () {
@@ -27,64 +163,137 @@
                 this.context = this.canvas.getContext("2d");
                 document.body.insertBefore(this.canvas, document.body.childNodes[0]);
                 this.interval = setInterval(updateGameArena, 20);
+                
+                window.addEventListener("mousedown", function (event) {
+                    gameArena.x = e.pageX;
+                    gameArena.y = e.pageY;
+                });
+                window.addEventListener("mouseup", function (event) {
+                    gameArena.x = false;
+                    gameArena.y = false;
+                });
+                window.addEventListener('touchstart', function (event) {
+                    gameArena.x = e.pageX;
+                    gameArena.y = e.pageY;
+                })
+                window.addEventListener('touchend', function (event) {
+                    gameArena.x = false;
+                    gameArena.y = false;
+                })
             },
-            clear: function() {
+            clear: function () {
                 this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
             }
         };
-
+        
         function component(width, height, color, x, y) {
             this.width = width;
             this.height = height;
+            this.speedX = 0;
+            this.speedY = 0;
             this.x = x;
             this.y = y;
-            this.update = function() {
+            this.update = function () {
                 ctx = gameArena.context;
                 ctx.fillStyle = color;
                 ctx.fillRect(this.x, this.y, this.width, this.height);
-            }
+            };
+            this.newPosition = function() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+            };
+            this.clicked = () => {
+                let myLeft = this.x;
+                let myRight = this.x + (this.width);
+                let myUp = this.y;
+                let myDown = this.y + (this.height);
+                let clicked = true;
+                if ((myDown < gameArena.y) || (myUp > gameArena.y) || (myRight < gameArena.x) || (myLeft > gameArena.x)) {
+                    clicked = false;
+                };
+                return clicked;
+            };
         };
-
+        
         function updateGameArena() {
             gameArena.clear();
             
             console.log("inside func", gameArena.canvas.width);
             console.log("inside func", redGamePiece.x);
             
+            redGamePiece.newPosition();
+            
             // redGamePiece.x += 1;
-            // redGamePiece.update();
-
-            if (redGamePiece.x > gameArena.canvas.width) {
-                redGamePiece.x = 10;
-                redGamePiece.update();
-            } else {
-                redGamePiece.x += 1;
-                redGamePiece.update();
-            }
-
-
-            // greenGamePiece.x += 1;
-            // greenGamePiece.y -= 1;
-            // greenGamePiece.update();
-
-            if (greenGamePiece.y > gameArena.canvas.height) {
-                greenGamePiece.x = 400;
-                greenGamePiece.y = 10;
-                greenGamePiece.update();
-            } else {
-                greenGamePiece.x -= 1;
-                greenGamePiece.y += 1;
-                greenGamePiece.update();
-            }
+            redGamePiece.update();
+            
+            // if (redGamePiece.x > gameArena.canvas.width) {
+                //     redGamePiece.x = 10;
+                //     redGamePiece.update();
+                // } else {
+                    //     redGamePiece.x += 1;
+                    //     redGamePiece.update();
+                    // }
+                    
+                    
+                    // greenGamePiece.x += 1;
+                    // greenGamePiece.y -= 1;
+                    // greenGamePiece.update();
+                    
+                    // if (greenGamePiece.y > gameArena.canvas.height) {
+                        //     greenGamePiece.x = 400;
+                        //     greenGamePiece.y = 10;
+                        //     greenGamePiece.update();
+                        // } else {
+                            //     greenGamePiece.x -= 1;
+                            //     greenGamePiece.y += 1;
+                            //     greenGamePiece.update();
+                            // }
+                            
+                            if (gameArena.x && gameArena.y) {
+                                if (myUpButton.clicked()) {
+                                    redGamePiece.y -= 1;
+                                }
+                                if (myDownButton.clicked()) {
+                                    redGamePiece.y += 1;
+                                }
+                                if (myLeftButton.clicked()) {
+                                    redGamePiece.x -= 1;
+                                }
+                                if (myRightButton.clicked()) {
+                                    redGamePiece.x += 1;
+                                }
+                            }
+                            
+                            myUpButton.update();
+                            myDownButton.update();
+            myLeftButton.update();
+            myRightButton.update();
             
         };
+        
+        function moveUp() {
+            redGamePiece.speedY -= 5;
+        };
+        function moveDown() {
+            redGamePiece.speedY += 5;
+        };
+        function moveLeft() {
+            redGamePiece.speedX -= 5;
+        };
+        function moveRight() {
+            redGamePiece.speedX += 5;
+        };
+        function stopMovement() {
+            redGamePiece.speedX = 0;
+            redGamePiece.speedY = 0;
+        }
+        
+        // console.log("outside func", gameArena.canvas.width);
+        </script> -->
 
-            // console.log("outside func", gameArena.canvas.width);
 
-    </script>
 
-    <p>Caterpillar run ver1.0</p>
 
-    
+
 </body>
 </html>
