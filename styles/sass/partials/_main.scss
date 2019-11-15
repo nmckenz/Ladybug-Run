@@ -2,6 +2,10 @@
 //     border: 5px solid red;
 // }
 
+.movementQueue p {
+    display: inline-block;
+}
+
 .buttonWrapper {
     margin-top: 35px;
     text-align: center;
@@ -28,9 +32,102 @@
     border: 1px solid red;
     width: 500px;
     height: 500px;
+    background: #2eb872;
 }
 
 .draw {
-    background: green;
+    background: #fa4659;
     border-radius: 50%;
 }
+
+.item {
+    position: relative;
+}
+
+
+// ----------------------------------------------------
+// begin ladybudy styling
+.body{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 100%;
+    border-width: 0;
+    border-top:solid 20px #000;
+    background: #cc0000;
+}
+.body:after {
+    display: block;
+    content: '';
+    width: 2px;
+    height: 100%;
+    background-color: #990000;
+    position: absolute;
+    left: 50%;
+}
+.eyes {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    position: absolute;
+}
+
+.eyes:after {
+    display: block;
+    content: '';
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+}
+
+.eyes.left {
+    top: -50%;
+    left: 30%;
+}
+.eyes.right {
+    top: -50%;
+    left: 50%;
+}
+
+.spot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #000;
+    position: absolute;
+ }
+ 
+ .spot1 {
+    top:25%;
+    left:33%;
+}
+
+ .spot2 {
+    top:25%;
+    left:60%;
+}
+
+ .spot3 {
+    top:50%;
+    left:26%;
+}
+
+ .spot4 {
+    top:50%;
+    left:67%;
+}
+
+.spot5 {
+    top:70%;
+    left:38%;
+}
+
+.spot6 {
+    top: 70%;
+    left: 56%;
+}
+// end ladybug styling
+// ----------------------------------------------------
