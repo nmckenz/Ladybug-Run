@@ -5,12 +5,13 @@ const caterpillar = {}
 let runTracker = 0;
 let gameTracker = 0;
 let winTracker = 0;
+let finalPositionTracker = 0;
 let $leafPosition;
 let $caterpillarPosition;
 // -------------------------------------------------------
 // toggle class for drawing caterpillar and leaf
 
-let caterpillarTrackingArray = ["91"];
+let caterpillarTrackingArray = [91];
 const caterpillarDrawing = `<div class="body">
 <div class="eyes left"></div>
 <div class="eyes right"></div>
@@ -25,7 +26,7 @@ const caterpillarDrawing = `<div class="body">
 
 // const leafTrackingArray = [(Math.floor(Math.random() * 100) + 1).toString()];
 let leafTrackingArray = [];
-console.log("leaf tracking", leafTrackingArray);
+// console.log("leaf tracking", leafTrackingArray);
 
 
 caterpillar.leafRandomize = () => {
@@ -47,7 +48,7 @@ caterpillar.leafRandomize = () => {
 // leafTrackingArray[0] = x;
 
 caterpillar.leafRandomize();
-console.log("leaf tracking after func", leafTrackingArray);
+// console.log("leaf tracking after func", leafTrackingArray);
 
 
 const leafDrawing = `<img src="./assets/leaf.png" alt="shady spot for our scorched ladybug to rest" class="leafImage">`;
@@ -60,16 +61,23 @@ caterpillar.drawFunction = (imgPosition, imgType) => {
     // $(`.item${caterpillarTrackingArray[0]}`).append(caterpillarDrawing);
     
     // imgPosition.append(imgType);
-    console.log("img pos", imgPosition);
-    console.log("img type", imgType);
-    $(`.item${imgPosition}`).append(imgType);
+    // console.log("img pos", imgPosition);
+    // console.log("img type", imgType);
+    // $(`.item${imgPosition}`).append(imgType);
+
+    if ($caterpillarPosition !== $leafPosition) {
+        $(`.item${imgPosition}`).append(imgType);
+    } else {
+        $(`.item${imgPosition}`).html("");
+        $(`.item${imgPosition}`).append(leafDrawing);
+    };
     
 };
 
 $caterpillarPosition = caterpillarTrackingArray[0];
 $leafPosition = leafTrackingArray[0];
 
-console.log($caterpillarPosition, $leafPosition)
+// console.log($caterpillarPosition, $leafPosition)
 
 caterpillar.drawFunction($caterpillarPosition, caterpillarDrawing);
 caterpillar.drawFunction($leafPosition, leafDrawing);
@@ -82,7 +90,7 @@ caterpillar.drawFunction($leafPosition, leafDrawing);
 // -------------------------------------------------------
 
 caterpillar.gameReset = () => {
-    console.log("game reset func call");
+    // console.log("game reset func call");
     // $(`.item${caterpillarTrackingArray[0]}`).html("");
     // $(".movementQueue").empty();
     // movementQueueArray.length = 0;
@@ -101,7 +109,7 @@ caterpillar.gameReset = () => {
 };
 
 caterpillar.bugReset = () => {
-    console.log("bug reset func call");
+    // console.log("bug reset func call");
     $(`.item${caterpillarTrackingArray[0]}`).html("");
     $(".movementQueue").empty();
     movementQueueArray.length = 0;
@@ -111,25 +119,42 @@ caterpillar.bugReset = () => {
 }
 
 caterpillar.leafReset = () => {
-    console.log("leaf reset func call");
+    // console.log("leaf reset func call");
     caterpillar.leafRandomize();
     caterpillar.drawFunction($leafPosition, leafDrawing);
 }
 
 caterpillar.gameWinCheck = () => {
-    if ($caterpillarPosition === $leafPosition) {
+    if (finalPositionTracker === $leafPosition) {
         winTracker = 1;
         if (confirm("The ladybug has it made in the shade! Do you wish to play again?")) {
-            console.log("user plays again")
+            // console.log("user plays again")
             // caterpillar.leafRandomize();
             // console.log("leaf pos after win", $leafPosition);
             caterpillar.gameReset();
         } else {
-            console.log("user done");
+            // console.log("user done");
             alert("Thanks for playing!");
         }
     };
 }
+
+
+caterpillar.finalPositionCalc = () => {
+    let finalPosition = 91;
+    movementQueueArray.forEach(function (movement) {
+        if (movement === "upButton" && finalPosition > 10) {
+            finalPosition -= 10;
+        } else if (movement === "downButton" && finalPosition <= 90) {
+            finalPosition += 10;
+        } else if (movement === "leftButton" && finalPosition % 10 != 1) {
+            finalPosition -= 1;
+        } else if (finalPosition % 10 != 0) {
+            finalPosition += 1;
+        };
+    });
+    return finalPosition;
+};
 
 
 // -----------------------------------------------------
@@ -145,17 +170,20 @@ $(".button").mousedown(function () {
             alert("Ladybug is all out of moves. Please hit reset button to play again.");
         } else {
             gameTracker = 1;
-            console.log("game tracker", runTracker);
+            // console.log("game tracker", runTracker);
+            finalPositionTracker = caterpillar.finalPositionCalc();
+            console.log("final position track", finalPositionTracker);
+
             movementQueueArray.forEach(function(movement, index) {
                 setTimeout(function() {
-                    console.log(movement);
+                    // console.log(movement);
                     caterpillar.buttonAction(movement);
                 }, index * 1500);
             });
             movementQueueArray.length = 0;
-            console.log("queue array after run", movementQueueArray);
+            // console.log("queue array after run", movementQueueArray);
 
-            console.log("caterpillar pos after run", $caterpillarPosition);
+            // console.log("caterpillar pos after run", $caterpillarPosition);
         }
 
         // $(".gridButtons").toggleClass("hidden");
@@ -199,16 +227,20 @@ $(".button").mousedown(function () {
             }
 
         }
+    } else if (buttonType === "closeInstructions") {
+        $(".gameInstructions").toggleClass("hidden");
+    } else if (buttonType === "openInstructions") {
+        $(".gameInstructions").toggleClass("hidden");
     } else {
         if (gameTracker === 1 && winTracker === 0) {
             alert("Ladybug is all out of moves. Please hit reset button to play again.");
         } else {
-            console.log(movementQueueArray);
+            // console.log(movementQueueArray);
             movementQueueArray.push(buttonType);
-            console.log(movementQueueArray);
+            // console.log(movementQueueArray);
             $(".movementQueue").append(`<p>${$(this).attr("id").replace("Button", "")}`);
             runTracker = 1;
-            console.log("run tracker", runTracker);
+            // console.log("run tracker", runTracker);
         }
     }
 });
@@ -219,7 +251,7 @@ caterpillar.buttonAction = (buttonType) => {
         if ((caterpillarTrackingArray[0] - 10) > 0) {
             // const newPosition = caterpillarTrackingArray[0] - 10;
             const newPosition = $caterpillarPosition - 10;
-            console.log("new position", newPosition);
+            // console.log("new position", newPosition);
 
             $(`.item${caterpillarTrackingArray[0]}`).html("");
             // $(`.item${$caterpillarPosition}`).html("");
@@ -227,12 +259,12 @@ caterpillar.buttonAction = (buttonType) => {
             
 
             caterpillarTrackingArray.splice(0, 1, newPosition);
-            console.log("bug track after splice", caterpillarTrackingArray);
+            // console.log("bug track after splice", caterpillarTrackingArray);
 
             $caterpillarPosition = caterpillarTrackingArray[0];
 
             // $caterpillarPosition = caterpillarTrackingArray.splice(0, 1, newPosition);
-            console.log("bug track after splice and redeclare", $caterpillarPosition);
+            // console.log("bug track after splice and redeclare", $caterpillarPosition);
 
             // runTracker = 1;
             // console.log("run tracker", runTracker);
@@ -247,6 +279,7 @@ caterpillar.buttonAction = (buttonType) => {
 
 
             // }
+            console.log("final position track before wincheck", finalPositionTracker);
 
             caterpillar.gameWinCheck();
         };
@@ -300,7 +333,7 @@ caterpillar.buttonAction = (buttonType) => {
             caterpillar.gameWinCheck();
         };
     }
-    console.log("bug track before new call", $caterpillarPosition)
+    // console.log("bug track before new call", $caterpillarPosition)
     caterpillar.drawFunction($caterpillarPosition, caterpillarDrawing);
 };
 // ------------------------------------------------------
@@ -310,7 +343,7 @@ caterpillar.buttonAction = (buttonType) => {
 // --------------------------------------------------------
 // array for tracking movement selections
 let movementQueueArray = [];
-console.log("queue array init", movementQueueArray);
+// console.log("queue array init", movementQueueArray);
 // -------------------------------------------------------
 
 

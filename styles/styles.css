@@ -244,6 +244,10 @@ body {
   background: #2eb872;
 }
 
+.hidden {
+  display: none;
+}
+
 .movementQueue p {
   display: inline-block;
 }
