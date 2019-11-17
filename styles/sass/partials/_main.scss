@@ -2,6 +2,18 @@
 //     border: 5px solid red;
 // }
 
+body {
+    background: #2eb872;
+}
+
+// .hidden {
+//     display: none;
+// }
+
+// .inlineBlock {
+//     display: inline-block;
+// }
+
 .movementQueue p {
     display: inline-block;
 }
@@ -42,6 +54,12 @@
 
 .item {
     position: relative;
+}
+
+.leafImage {
+    max-width: 100%;
+    // width: 100%;
+    z-index: 10;
 }
 
 

@@ -240,6 +240,10 @@ canvas {
   background-color: #f1f1f1;
 }
 
+body {
+  background: #2eb872;
+}
+
 .movementQueue p {
   display: inline-block;
 }
@@ -282,6 +286,11 @@ canvas {
 
 .item {
   position: relative;
+}
+
+.leafImage {
+  max-width: 100%;
+  z-index: 10;
 }
 
 .body {
