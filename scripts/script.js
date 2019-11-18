@@ -49,8 +49,6 @@ ladybug.leafRandomize = () => {
     };
 };
 
-ladybug.leafRandomize();
-
 ladybug.finalPositionCalc = () => {
     let finalPosition = 91;
     movementQueueArray.forEach(function (movement) {
@@ -77,9 +75,6 @@ ladybug.drawFunction = (imgPosition, imgType) => {
 
 $ladybugPosition = ladybugTrackingArray[0];
 $leafPosition = leafTrackingArray[0];
-
-ladybug.drawFunction($ladybugPosition, ladybugDrawing);
-ladybug.drawFunction($leafPosition, leafDrawing);
 // ------------------------------------------------------
 
 
@@ -119,7 +114,6 @@ ladybug.leafReset = () => {
     ladybug.drawFunction($leafPosition, leafDrawing);
 };
 // ---------------------------------------------------------
-
 
 
 
@@ -218,6 +212,9 @@ ladybug.buttonAction = (buttonType) => {
 
 // INIT===================================================
 ladybug.init = () => {
+    ladybug.leafRandomize();
+    ladybug.drawFunction($ladybugPosition, ladybugDrawing);
+    ladybug.drawFunction($leafPosition, leafDrawing);
 };
 // =======================================================
 
