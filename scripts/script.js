@@ -1,5 +1,5 @@
 // NAMESPACE==============================================
-const caterpillar = {};
+const ladybug = {};
 // =======================================================
 
 
@@ -11,7 +11,7 @@ let winTracker = 0;
 let queueTracker = 0;
 let finalPositionTracker = 0;
 let $leafPosition;
-let $caterpillarPosition;
+let $ladybugPosition;
 let movementQueueArray = [];
 const icons = {
     upButton: `<i class="fas fa-arrow-up"></i>`,
@@ -24,8 +24,8 @@ const icons = {
 
 
 // BUG AND LEAF --------------------------------------------
-let caterpillarTrackingArray = [91];
-const caterpillarDrawing = `<div class="bugBody">
+let ladybugTrackingArray = [91];
+const ladybugDrawing = `<div class="bugBody">
 <div class="eyes left"></div>
 <div class="eyes right"></div>
 <div class="spot spot1"></div>
@@ -39,19 +39,19 @@ const caterpillarDrawing = `<div class="bugBody">
 let leafTrackingArray = [];
 const leafDrawing = `<img src="./assets/leaf.png" alt="shady spot for our scorched ladybug to rest" class="leafImage">`;
 
-caterpillar.leafRandomize = () => {
+ladybug.leafRandomize = () => {
     let leafPos = (Math.floor(Math.random() * 100) + 1);
     if (leafPos === 91) {
-        caterpillar.leafRandomize()
+        ladybug.leafRandomize()
     } else {
         leafTrackingArray[0] = leafPos;
         $leafPosition = leafTrackingArray[0];
     };
 };
 
-caterpillar.leafRandomize();
+ladybug.leafRandomize();
 
-caterpillar.finalPositionCalc = () => {
+ladybug.finalPositionCalc = () => {
     let finalPosition = 91;
     movementQueueArray.forEach(function (movement) {
         if (movement === "upButton" && finalPosition > 10) {
@@ -71,52 +71,52 @@ caterpillar.finalPositionCalc = () => {
 
 
 // DRAWING----------------------------------------------------
-caterpillar.drawFunction = (imgPosition, imgType) => {
+ladybug.drawFunction = (imgPosition, imgType) => {
     $(`.item${imgPosition}`).append(imgType);
 };
 
-$caterpillarPosition = caterpillarTrackingArray[0];
+$ladybugPosition = ladybugTrackingArray[0];
 $leafPosition = leafTrackingArray[0];
 
-caterpillar.drawFunction($caterpillarPosition, caterpillarDrawing);
-caterpillar.drawFunction($leafPosition, leafDrawing);
+ladybug.drawFunction($ladybugPosition, ladybugDrawing);
+ladybug.drawFunction($leafPosition, leafDrawing);
 // ------------------------------------------------------
 
 
 
 // GAME WIN AND RESET-----------------------------------------
-caterpillar.gameWinCheck = () => {
-    if ($caterpillarPosition === $leafPosition && finalPositionTracker === $leafPosition) {
+ladybug.gameWinCheck = () => {
+    if ($ladybugPosition === $leafPosition && finalPositionTracker === $leafPosition) {
         winTracker = 1;
         if (confirm("The ladybug has it made in the shade! \n\nDo you wish to play again?")) {
-            caterpillar.gameReset();
+            ladybug.gameReset();
         } else {
             alert("Thanks for playing!");
         }
     };
 };
 
-caterpillar.gameReset = () => {
+ladybug.gameReset = () => {
     runTracker = 0;
     gameTracker = 0;
     winTracker = 0;
-    caterpillar.bugReset();
-    caterpillar.leafReset();
+    ladybug.bugReset();
+    ladybug.leafReset();
 };
 
-caterpillar.bugReset = () => {
-    $(`.item${caterpillarTrackingArray[0]}`).html("");
+ladybug.bugReset = () => {
+    $(`.item${ladybugTrackingArray[0]}`).html("");
     $(".movementQueue").empty();
     $(".movementQueue").append("<h4>queue:</h4>");
     movementQueueArray.length = 0;
-    caterpillarTrackingArray[0] = 91;
-    $caterpillarPosition = caterpillarTrackingArray[0];
-    caterpillar.drawFunction($caterpillarPosition, caterpillarDrawing);
+    ladybugTrackingArray[0] = 91;
+    $ladybugPosition = ladybugTrackingArray[0];
+    ladybug.drawFunction($ladybugPosition, ladybugDrawing);
 };
 
-caterpillar.leafReset = () => {
-    caterpillar.leafRandomize();
-    caterpillar.drawFunction($leafPosition, leafDrawing);
+ladybug.leafReset = () => {
+    ladybug.leafRandomize();
+    ladybug.drawFunction($leafPosition, leafDrawing);
 };
 // ---------------------------------------------------------
 
@@ -133,10 +133,10 @@ $(".button").mousedown(function () {
             alert("Ladybug is all out of moves. \n\nPlease hit reset button to play again.");
         } else {
             gameTracker = 1;
-            finalPositionTracker = caterpillar.finalPositionCalc();
+            finalPositionTracker = ladybug.finalPositionCalc();
             movementQueueArray.forEach(function(movement, index) {
                 setTimeout(function() {
-                    caterpillar.buttonAction(movement);
+                    ladybug.buttonAction(movement);
                 }, index * 1000);
             });
             movementQueueArray.length = 0;
@@ -148,15 +148,15 @@ $(".button").mousedown(function () {
         } else if (movementQueueArray.length !== 0 && runTracker === 1 && gameTracker === 1) {
             alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!")
         } else if (movementQueueArray.length !== 0 && runTracker === 0) {
-            caterpillar.bugReset();
+            ladybug.bugReset();
         } else {
             if (winTracker === 0) {
-                caterpillar.bugReset();
+                ladybug.bugReset();
                 runTracker = 0;
                 gameTracker = 0;
                 queueTracker = 0;
             } else {
-                caterpillar.gameReset();
+                ladybug.gameReset();
             }
         };
     } else if (buttonType === "closeInstructions") {
@@ -174,42 +174,42 @@ $(".button").mousedown(function () {
         };
     });
 
-caterpillar.buttonAction = (buttonType) => {
+ladybug.buttonAction = (buttonType) => {
     if (buttonType === "upButton") {
-        if ((caterpillarTrackingArray[0] - 10) > 0) {
-            const newPosition = $caterpillarPosition - 10;
+        if ((ladybugTrackingArray[0] - 10) > 0) {
+            const newPosition = $ladybugPosition - 10;
             $(".bugBody").remove();
-            caterpillarTrackingArray.splice(0, 1, newPosition);
-            $caterpillarPosition = caterpillarTrackingArray[0];
-            caterpillar.gameWinCheck();
+            ladybugTrackingArray.splice(0, 1, newPosition);
+            $ladybugPosition = ladybugTrackingArray[0];
+            ladybug.gameWinCheck();
         };
     } else if (buttonType === "downButton") {
-        if ((caterpillarTrackingArray[0] + 10) <= 100) {
-            const newPosition = $caterpillarPosition + 10;
+        if ((ladybugTrackingArray[0] + 10) <= 100) {
+            const newPosition = $ladybugPosition + 10;
             $(".bugBody").remove();
-            caterpillarTrackingArray.splice(0, 1, newPosition);
-            $caterpillarPosition = caterpillarTrackingArray[0];
-            caterpillar.gameWinCheck();
+            ladybugTrackingArray.splice(0, 1, newPosition);
+            $ladybugPosition = ladybugTrackingArray[0];
+            ladybug.gameWinCheck();
         };
     } else if (buttonType === "leftButton") {
-        if ((caterpillarTrackingArray[0] - 1) % 10 != 0) {
-            const newPosition = $caterpillarPosition - 1;
+        if ((ladybugTrackingArray[0] - 1) % 10 != 0) {
+            const newPosition = $ladybugPosition - 1;
             $(".bugBody").remove();
-            caterpillarTrackingArray.splice(0, 1, newPosition);
-            $caterpillarPosition = caterpillarTrackingArray[0];
-            caterpillar.gameWinCheck();
+            ladybugTrackingArray.splice(0, 1, newPosition);
+            $ladybugPosition = ladybugTrackingArray[0];
+            ladybug.gameWinCheck();
         };
     } else if (buttonType === "rightButton") {
-        if ((caterpillarTrackingArray[0] + 1) % 10 != 1) {
-            const newPosition = $caterpillarPosition + 1;
+        if ((ladybugTrackingArray[0] + 1) % 10 != 1) {
+            const newPosition = $ladybugPosition + 1;
             $(".bugBody").remove();
-            caterpillarTrackingArray.splice(0, 1, newPosition);
-            $caterpillarPosition = caterpillarTrackingArray[0];
-            caterpillar.gameWinCheck();
+            ladybugTrackingArray.splice(0, 1, newPosition);
+            $ladybugPosition = ladybugTrackingArray[0];
+            ladybug.gameWinCheck();
         };
     };
-    if ($caterpillarPosition !== $leafPosition) {
-        caterpillar.drawFunction($caterpillarPosition, caterpillarDrawing);
+    if ($ladybugPosition !== $leafPosition) {
+        ladybug.drawFunction($ladybugPosition, ladybugDrawing);
     };
 };
 // ------------------------------------------------------
@@ -217,7 +217,7 @@ caterpillar.buttonAction = (buttonType) => {
 
 
 // INIT===================================================
-caterpillar.init = () => {
+ladybug.init = () => {
 };
 // =======================================================
 
@@ -225,6 +225,6 @@ caterpillar.init = () => {
 
 // DOCUMENT READY=========================================
 $(function () {
-    caterpillar.init();
+    ladybug.init();
 })
 // =======================================================
