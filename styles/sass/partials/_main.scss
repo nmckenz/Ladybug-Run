@@ -1,7 +1,3 @@
-// .canvasButtons {
-//     border: 5px solid red;
-// }
-
 body {
     background: #2eb872;
     // position: relative;
@@ -11,7 +7,7 @@ body {
 
 body p {
     font-size: 1rem;
-
+    
     @media (max-width: 520px) {
         font-size: 0.8rem;
     }
@@ -21,13 +17,19 @@ body p {
     display: none;
 }
 
-// .inlineBlock {
-//     display: inline-block;
-// }
-
-// .block {
-//     display: block;
-// }
+// ----------------------------------
+// begin instructions styling   
+.instructionsWrapper {
+    position: fixed;
+    width: 100vw;
+    height: 110vh;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    z-index: 10;
+}
 
 .gameInstructions {
     // position: absolute;
@@ -91,24 +93,11 @@ body p {
     }
 }
 
-.instructionsWrapper {
-    // position: relative;
-    position: fixed;
-    // display: none;
-    // width: 100%;
-    // height: 100%;
-    width: 100vw;
-    height: 110vh;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0,0,0,0.8);
-    //   display: block;
-    z-index: 10;
+// end instruction styling
+// ---------------------------------------
 
-}
-
+// -----------------------------------
+// begin movement queue styling
 .movementQueue {
     text-align: center;
     margin-top: 1vh;
@@ -128,16 +117,20 @@ body p {
 
 .movementQueue p {
     display: inline-block;
-    width: 90px;
+    width: 35px;
     text-transform: uppercase;
 
     @media (max-width: 520px) {
-        font-size: 0.7rem;
-        width: 70px;
+        font-size: 0.75rem;
+        width: 15px;
         margin: 5px 10px;
     }
 }
+// end movement queue styling
+// ----------------------------------------
 
+// ----------------------------------------
+// begin button styling
 .buttonWrapper {
     // margin-top: 35px;
     text-align: center;
@@ -167,20 +160,22 @@ button {
     font-size: 1rem;
     background: #feffe4;
 }
+// end button styling
+// -----------------------------------------
 
+
+// ---------------------------------
+// begin grid styling
 .grid {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
-
     margin: 0 auto;
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
     border: 2.5px solid #a3de83;
     width: 500px;
     height: 500px;
-    // width: 300px;
-    // height: 300px;
     background: #2eb872;
 
     @media (max-width: 520px) {
@@ -197,16 +192,17 @@ button {
 .item {
     position: relative;
 }
+// end grid styling
+// --------------------------------------------
 
+// ----------------------------------------------------
+// begin leaf and ladybudy styling
 .leafImage {
     max-width: 100%;
     // width: 100%;
     // z-index: 10;
 }
 
-
-// ----------------------------------------------------
-// begin ladybudy styling
 .bugBody{
     position: absolute;
     width: 100%;
