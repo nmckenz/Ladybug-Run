@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
     <title>Document</title>
 </head>
@@ -29,17 +30,28 @@
         <div class="spot spot5"></div>
     </div> -->
 
-    <div class="gameInstructions">
-        <h1>welcome to ladybug run</h1>
+    <div class="instructionsWrapper">
+        <div class="gameInstructions">
+            <h1>welcome to ladybug run</h1>
+    
+            <section>
+                <p>it sure is hot and sunny out today!</p>
+                <p>our poor ladybug is doomed if she can't find a shady spot to rest.</p>
+                <h3>how to play</h3>
+                <ul>
+                    <li>
+                        <p>use the movement buttons (up, down, left & right) to lead our dear ladybug to that nice leaf.</p>
 
-        <section>
-            <h3>how to play</h3>
-            <p>it sure is hot and sunny out today!</p>
-            <p>our poor ladybug is doomed if she can't find a shady spot to rest.</p>
-            <p>use the movement buttons (up, down, left & right) to lead our dear ladybug to that nice leaf.</p>
-            <p>once you have finished giving her movement instructions, press the run button and we'll see if she finds her way to safety!</p>
-            <button id="closeInstructions" class="button">let's play</button>
-        </section>
+                    </li>
+                    <li>
+                        <p>once you have finished giving her movement instructions, press the run button and we'll see if she finds her way to safety!</p>
+
+                    </li>
+                </ul>
+                <button id="closeInstructions" class="button">let's play</button>
+            </section>
+        </div>
+
     </div>
     
     
@@ -146,30 +158,34 @@
         <div class="item item100" value="100"></div>    
         
     </div>
-    
-    <div class="buttonWrapper">
-        <div class="gridButtons">
-            <button id="upButton" class="button">up</button>
-            <button id="downButton" class="button">down</button>
-            <button id="leftButton" class="button">left</button>
-            <button id="rightButton" class="button">right</button>
-        </div>
-    </div>
-    
-    <div class="buttonWrapper">
-        <div class="gridButtons">
-            <button id="runButton" class="button">run</button>
-            <button id="resetButton" class="button">reset</button>
-            <button id="openInstructions" class="button">?</button>
-        </div>
-    </div>
 
-    <div class="movementQueue">
+    
+    <div class="gameControls">
+        <div class="buttonWrapper">
+            <div class="moveButtons">
+                <button id="upButton" class="button">up</button>
+                <button id="downButton" class="button">down</button>
+                <button id="leftButton" class="button">left</button>
+                <button id="rightButton" class="button">right</button>
+            </div>
+        </div>
+        
+        <div class="movementQueue">
+            <h4>queue:</h4>
+        </div>
+
+        <div class="buttonWrapper">
+            <div class="runButtons">
+                <button id="runButton" class="button">run</button>
+                <button id="resetButton" class="button">reset</button>
+                <button id="openInstructions" class="button">?</button>
+            </div>
+        </div>
+    
 
     </div>
     
-    
-    <p>Caterpillar run ver1.0</p>
+    <!-- <p>Caterpillar run ver1.0</p> -->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>
     <script src="./scripts/script.js"></script>
