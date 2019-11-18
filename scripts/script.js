@@ -138,9 +138,9 @@ $(".button").mousedown(function () {
         };
     } else if (buttonType === "resetButton") {
         if (movementQueueArray[0] === undefined && runTracker === 0) {
-            alert("The poor ladybug is confused, she needs to know where to go first! \n\nPlease give her some directions.")
+            alert("The poor ladybug is confused, she needs to know where to go first! \n\nPlease give her some directions.");
         } else if (movementQueueArray.length !== 0 && runTracker === 1 && gameTracker === 1) {
-            alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!")
+            alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!");
         } else if (movementQueueArray.length !== 0 && runTracker === 0) {
             ladybug.bugReset();
         } else {
@@ -160,6 +160,8 @@ $(".button").mousedown(function () {
     } else {
         if (gameTracker === 1 && winTracker === 0) {
             alert("Ladybug is all out of moves. \n\nPlease hit reset button to play again.");
+        } else if (queueTracker === 1) {
+            alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!");
         } else {
             movementQueueArray.push(buttonType);
             $(".movementQueue").append(`<p>${icons[buttonType]}</p>`)
