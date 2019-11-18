@@ -263,7 +263,7 @@ body p {
 .instructionsWrapper {
   position: fixed;
   width: 100vw;
-  height: 110vh;
+  height: 100vh;
   top: 0;
   left: 0;
   right: 0;
@@ -275,6 +275,7 @@ body p {
 .gameInstructions {
   color: #feffe4;
   text-align: center;
+  margin: 0 5%;
 }
 
 .gameInstructions h1 {
@@ -298,6 +299,7 @@ body p {
 @media (max-width: 520px) {
   .gameInstructions h3 {
     font-size: 1rem;
+    margin-top: 30px;
   }
 }
 
@@ -310,9 +312,20 @@ body p {
   width: 50%;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 800px) {
   .gameInstructions ul {
     width: 100%;
+    margin: 20px auto;
+  }
+}
+
+.gameInstructions li {
+  text-align: left;
+}
+
+@media (max-width: 520px) {
+  .gameInstructions p {
+    line-height: 1.1rem;
   }
 }
 
