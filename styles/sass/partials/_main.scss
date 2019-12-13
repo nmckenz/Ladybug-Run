@@ -1,5 +1,5 @@
 body {
-    background: #2eb872;
+    background: repeat url(../assets/grassBackground.png);
     font-family: 'Press Start 2P', cursive;
     font-size: 125%;
 }
@@ -7,7 +7,11 @@ body {
 body p {
     font-size: 1rem;
     
-    @media (max-width: 520px) {
+    @media (max-width: 600px) {
+        font-size: 0.9rem;
+    }
+
+    @media (max-width: 380px) {
         font-size: 0.8rem;
     }
 }
@@ -41,8 +45,12 @@ body p {
     margin: 50px 0;
     font-size: 2rem;
 
-    @media (max-width: 520px) {
+    @media (max-width: 625px) {
         font-size: 1.2rem;
+    }
+
+    @media (max-width: 430px) {
+        margin: 25px auto;
     }
 }
 
@@ -51,9 +59,13 @@ body p {
     margin-top: 60px;
     font-size: 1.5rem;
 
-    @media (max-width: 520px) {
+    @media (max-width: 625px) {
         font-size: 1rem;
         margin-top: 30px;
+    }
+
+    @media (max-width: 380px) {
+        margin-top: 15px;
     }
 }
 
@@ -65,6 +77,10 @@ body p {
     margin: 35px auto;
     width: 50%;
 
+    @media (max-width: 1200px) {
+        width: 75%;
+    }
+
     @media (max-width: 800px) {
         width: 100%;
         margin: 20px auto;
@@ -73,11 +89,32 @@ body p {
 
 .gameInstructions li {
     text-align: left;
+    line-height: 1.75;
 }
 
 .gameInstructions p {
-    @media (max-width: 520px) {
-        line-height: 1.1rem;
+    @media (max-width: 625px) {
+        line-height: 1.5rem;
+    }
+}
+
+.gameInstructions button {
+    @media (max-width: 480px) {
+        padding: 7.5px 15px;
+        font-size: 0.8rem;
+    }
+}
+
+.gameInstructions img {
+    width: 50px;
+    height: 50px;
+    display: block;
+    margin: 10px auto;
+
+    @media (max-width: 380px) {
+        width: 30px;
+        height: 30px;
+        margin: 5px auto;
     }
 }
 
@@ -90,12 +127,14 @@ body p {
     text-align: center;
     margin-top: 1vh;
     margin-bottom: 1vh;
+    height: 75px;
 }
 
 .movementQueue h4 {
     text-transform: capitalize;
     display: inline-block;
     font-size: 1rem;
+    margin: 0;
 
     @media (max-width: 520px) {
         margin: 5px 0;
@@ -105,7 +144,8 @@ body p {
 
 .movementQueue p {
     display: inline-block;
-    width: 35px;
+    width: 25px;
+    margin: 0;
     text-transform: uppercase;
 
     @media (max-width: 520px) {
@@ -125,7 +165,6 @@ body p {
 }
 
 .moveButtons, .runButtons {
-    // margin: 0 auto;
     display: inline-block;
     border: 5px solid #a3de83;
 }
@@ -141,6 +180,10 @@ body p {
     }
 }
 
+.runButtons {
+    margin-top: 5px;
+}
+
 button {
     font-family: 'Press Start 2P', cursive;
     padding: 10px 25px;
@@ -154,19 +197,20 @@ button {
 
 // ---------------------------------
 // begin grid styling
-.grid {
+.arena {
     display: grid;
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: repeat(10, 1fr);
     margin: 0 auto;
     margin-top: 2.5vh;
     margin-bottom: 2.5vh;
-    border: 2.5px solid #a3de83;
     width: 500px;
     height: 500px;
-    background: #2eb872;
+    background: repeat url(../assets/dirtBackgroundAlt.png);
+    box-shadow: 0 0 10px 10px green inset, 0 0 20px 20px #87f14ea9;
+    border-radius: 5%;
 
-    @media (max-width: 520px) {
+    @media (max-width: 580px) {
         width: 300px;
         height: 300px;
     }
@@ -180,6 +224,18 @@ button {
 .item {
     position: relative;
 }
+
+.treeBranch {
+    height: 250px;
+    width: 25px;
+    position: absolute;
+    transform-origin: right 15px;
+    transform: rotate(-90deg);
+}
+
+.item22 {
+    position: relative;
+}
 // end grid styling
 // --------------------------------------------
 
@@ -187,8 +243,6 @@ button {
 // begin leaf and ladybudy styling
 .leafImage {
     max-width: 100%;
-    // width: 100%;
-    // z-index: 10;
 }
 
 .bugBody{
@@ -204,6 +258,7 @@ button {
         border-top: 10px solid #000;
     }
 }
+
 .bugBody:after {
     display: block;
     content: '';
@@ -213,6 +268,7 @@ button {
     position: absolute;
     left: 50%;
 }
+
 .eyes {
     width: 10px;
     height: 10px;

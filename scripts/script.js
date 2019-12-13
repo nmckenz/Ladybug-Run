@@ -95,6 +95,7 @@ ladybug.gameReset = () => {
     runTracker = 0;
     gameTracker = 0;
     winTracker = 0;
+    queueTracker = 0;
     ladybug.bugReset();
     ladybug.leafReset();
 };
@@ -102,7 +103,7 @@ ladybug.gameReset = () => {
 ladybug.bugReset = () => {
     $(`.item${ladybugTrackingArray[0]}`).html("");
     $(".movementQueue").empty();
-    $(".movementQueue").append("<h4>queue:</h4>");
+    $(".movementQueue").append(`<h4>queue:</h4><div class="movesQueued"></div>`);
     movementQueueArray.length = 0;
     ladybugTrackingArray[0] = 91;
     $ladybugPosition = ladybugTrackingArray[0];
@@ -118,7 +119,7 @@ ladybug.leafReset = () => {
 
 
 // BUTTON FUNCTIONALITY-----------------------------------------
-$(".button").mousedown(function () {
+$(".button").click(function () {
     const buttonType = $(this).attr("id");
     if (buttonType === "runButton") {
         if (runTracker === 0) {
@@ -164,7 +165,7 @@ $(".button").mousedown(function () {
             alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!");
         } else {
             movementQueueArray.push(buttonType);
-            $(".movementQueue").append(`<p>${icons[buttonType]}</p>`)
+            $(".movesQueued").append(`<p>${icons[buttonType]}</p>`)
             runTracker = 1;
             };
         };

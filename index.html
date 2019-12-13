@@ -4,10 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <link href="https://use.fontawesome.com/releases/v5.0.7/css/all.css" rel="stylesheet">
     <link rel="stylesheet" href="./styles/styles.css">
-    <title>Document</title>
+    <title>Ladybug Run</title>
 </head>
 <body>
     <main>
@@ -30,11 +34,12 @@
                         </li>
                     </ul>
                     <button id="closeInstructions" class="button">let's play</button>
+                    <img src="./assets/ladybugAnimation.gif" alt="Cartoon ladybug">
                 </section>
             </div>
         </div>
         
-        <div class="grid">
+        <div class="arena">
             <div class="item item1" value="1"></div>
             <div class="item item2" value="2"></div>
             <div class="item item3" value="3"></div>
@@ -56,7 +61,9 @@
             <div class="item item19" value="19"></div>
             <div class="item item20" value="20"></div>
             <div class="item item21" value="21"></div>
-            <div class="item item22" value="22"></div>
+            <div class="item item22" value="22">
+                <img src="./assets/branch.png" alt="Troublesome tree branch blocking our bug" class="treeBranch">
+            </div>
             <div class="item item23" value="23"></div>
             <div class="item item24" value="24"></div>
             <div class="item item25" value="25"></div>
@@ -138,29 +145,36 @@
         </div>
     
         <div class="gameControls">
+            <div class="movementQueue">
+                <h4>queue:</h4>
+                <div class="movesQueued">
+                    
+                </div>
+            </div>
+    
             <div class="buttonWrapper">
                 <div class="moveButtons">
-                    <button id="upButton" class="button">up</button>
-                    <button id="downButton" class="button">down</button>
-                    <button id="leftButton" class="button">left</button>
-                    <button id="rightButton" class="button">right</button>
+                    <button aria-label="Up" id="upButton" class="button"><i class="fas fa-arrow-up"></i></button>
+                    <button aria-label="Left" id="leftButton" class="button"><i class="fas fa-arrow-left"></i></button>
+                    <button aria-label="Right" id="rightButton" class="button"><i class="fas fa-arrow-right"></i></button>
+                    <button aria-label="Down" id="downButton" class="button"><i class="fas fa-arrow-down"></i></button>
                 </div>
             </div>
             
-            <div class="movementQueue">
-                <h4>queue:</h4>
-            </div>
-    
             <div class="buttonWrapper">
                 <div class="runButtons">
                     <button id="runButton" class="button">run</button>
                     <button id="resetButton" class="button">reset</button>
-                    <button id="openInstructions" class="button">?</button>
+                    <button aria-label="Game Instructions" id="openInstructions" class="button">?</button>
                 </div>
             </div>
         
     
         </div>
+
+        <footer class="visuallyhidden">
+            <p>Nicholas McKenzie <i class="far fa-copyright"> 2019</i></p>
+        </footer>
     </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>

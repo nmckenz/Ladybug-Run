@@ -241,7 +241,7 @@ canvas {
 }
 
 body {
-  background: #2eb872;
+  background: repeat url(../assets/grassBackground.png);
   font-family: 'Press Start 2P', cursive;
   font-size: 125%;
 }
@@ -250,7 +250,13 @@ body p {
   font-size: 1rem;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 600px) {
+  body p {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 380px) {
   body p {
     font-size: 0.8rem;
   }
@@ -284,9 +290,15 @@ body p {
   font-size: 2rem;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 625px) {
   .gameInstructions h1 {
     font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 430px) {
+  .gameInstructions h1 {
+    margin: 25px auto;
   }
 }
 
@@ -296,10 +308,16 @@ body p {
   font-size: 1.5rem;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 625px) {
   .gameInstructions h3 {
     font-size: 1rem;
     margin-top: 30px;
+  }
+}
+
+@media (max-width: 380px) {
+  .gameInstructions h3 {
+    margin-top: 15px;
   }
 }
 
@@ -312,6 +330,12 @@ body p {
   width: 50%;
 }
 
+@media (max-width: 1200px) {
+  .gameInstructions ul {
+    width: 75%;
+  }
+}
+
 @media (max-width: 800px) {
   .gameInstructions ul {
     width: 100%;
@@ -321,11 +345,34 @@ body p {
 
 .gameInstructions li {
   text-align: left;
+  line-height: 1.75;
 }
 
-@media (max-width: 520px) {
+@media (max-width: 625px) {
   .gameInstructions p {
-    line-height: 1.1rem;
+    line-height: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gameInstructions button {
+    padding: 7.5px 15px;
+    font-size: 0.8rem;
+  }
+}
+
+.gameInstructions img {
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 10px auto;
+}
+
+@media (max-width: 380px) {
+  .gameInstructions img {
+    width: 30px;
+    height: 30px;
+    margin: 5px auto;
   }
 }
 
@@ -333,12 +380,14 @@ body p {
   text-align: center;
   margin-top: 1vh;
   margin-bottom: 1vh;
+  height: 75px;
 }
 
 .movementQueue h4 {
   text-transform: capitalize;
   display: inline-block;
   font-size: 1rem;
+  margin: 0;
 }
 
 @media (max-width: 520px) {
@@ -350,7 +399,8 @@ body p {
 
 .movementQueue p {
   display: inline-block;
-  width: 35px;
+  width: 25px;
+  margin: 0;
   text-transform: uppercase;
 }
 
@@ -382,6 +432,10 @@ body p {
   }
 }
 
+.runButtons {
+  margin-top: 5px;
+}
+
 button {
   font-family: 'Press Start 2P', cursive;
   padding: 10px 25px;
@@ -390,7 +444,7 @@ button {
   background: #feffe4;
 }
 
-.grid {
+.arena {
   display: -ms-grid;
   display: grid;
   -ms-grid-columns: (1fr)[10];
@@ -400,14 +454,16 @@ button {
   margin: 0 auto;
   margin-top: 2.5vh;
   margin-bottom: 2.5vh;
-  border: 2.5px solid #a3de83;
   width: 500px;
   height: 500px;
-  background: #2eb872;
+  background: repeat url(../assets/dirtBackgroundAlt.png);
+  -webkit-box-shadow: 0 0 10px 10px green inset, 0 0 20px 20px #87f14ea9;
+          box-shadow: 0 0 10px 10px green inset, 0 0 20px 20px #87f14ea9;
+  border-radius: 5%;
 }
 
-@media (max-width: 520px) {
-  .grid {
+@media (max-width: 580px) {
+  .arena {
     width: 300px;
     height: 300px;
   }
@@ -419,6 +475,20 @@ button {
 }
 
 .item {
+  position: relative;
+}
+
+.treeBranch {
+  height: 250px;
+  width: 25px;
+  position: absolute;
+  -webkit-transform-origin: right 15px;
+          transform-origin: right 15px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
+}
+
+.item22 {
   position: relative;
 }
 
@@ -568,4 +638,9 @@ button {
     top: 67%;
     left: 58%;
   }
+}
+
+footer {
+  width: 100%;
+  background: green;
 }
