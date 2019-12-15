@@ -235,11 +235,6 @@ html {
   overflow: hidden;
 }
 
-canvas {
-  border: 1px solid #d3d3d3;
-  background-color: #f1f1f1;
-}
-
 body {
   background: repeat url(../assets/grassBackground.png);
   font-family: 'Press Start 2P', cursive;
@@ -408,7 +403,7 @@ body p {
   .movementQueue p {
     font-size: 0.75rem;
     width: 15px;
-    margin: 5px 10px;
+    margin: 0px 2.5px;
   }
 }
 
@@ -444,6 +439,17 @@ button {
   background: #feffe4;
 }
 
+@media (max-width: 580px) {
+  button {
+    font-size: 0.8rem;
+    padding: 8px 20px;
+  }
+}
+
+button:focus, button:hover {
+  background: #87f14ea9;
+}
+
 .arena {
   display: -ms-grid;
   display: grid;
@@ -454,8 +460,8 @@ button {
   margin: 0 auto;
   margin-top: 2.5vh;
   margin-bottom: 2.5vh;
-  width: 500px;
   height: 500px;
+  width: 500px;
   background: repeat url(../assets/dirtBackgroundAlt.png);
   -webkit-box-shadow: 0 0 10px 10px green inset, 0 0 20px 20px #87f14ea9;
           box-shadow: 0 0 10px 10px green inset, 0 0 20px 20px #87f14ea9;
@@ -464,8 +470,8 @@ button {
 
 @media (max-width: 580px) {
   .arena {
-    width: 300px;
     height: 300px;
+    width: 300px;
   }
 }
 
@@ -482,14 +488,20 @@ button {
   height: 250px;
   width: 25px;
   position: absolute;
-  -webkit-transform-origin: right 15px;
-          transform-origin: right 15px;
-  -webkit-transform: rotate(-90deg);
-          transform: rotate(-90deg);
 }
 
-.item22 {
-  position: relative;
+@media (max-width: 580px) {
+  .treeBranch {
+    height: 150px;
+    width: 15px;
+  }
+}
+
+.treeBranchRotate {
+  -webkit-transform-origin: right 7.5px;
+          transform-origin: right 7.5px;
+  -webkit-transform: rotate(-90deg);
+          transform: rotate(-90deg);
 }
 
 .leafImage {

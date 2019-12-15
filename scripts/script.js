@@ -8,11 +8,13 @@ const ladybug = {};
 let runTracker = 0;
 let gameTracker = 0;
 let winTracker = 0;
-let queueTracker = 0;
+let queueProgressTracker = 0;
+let queueIndexTracker = 0;
 let finalPositionTracker = 0;
 let $leafPosition;
 let $ladybugPosition;
 let movementQueueArray = [];
+let stickDrawing = [];
 const icons = {
     upButton: `<i class="fas fa-arrow-up"></i>`,
     downButton: `<i class="fas fa-arrow-down"></i>`,
@@ -37,12 +39,12 @@ const ladybugDrawing = `<div class="bugBody">
 </div>`;
 
 let leafTrackingArray = [];
-const leafDrawing = `<img src="./assets/leaf.png" alt="shady spot for our scorched ladybug to rest" class="leafImage">`;
+const leafDrawing = `<img src="./assets/leaf.png" alt="A shady spot for our scorched ladybug to rest" class="leafImage">`;
 
 ladybug.leafRandomize = () => {
     let leafPos = (Math.floor(Math.random() * 100) + 1);
     if (leafPos === 91) {
-        ladybug.leafRandomize()
+        ladybug.leafRandomize();
     } else {
         leafTrackingArray[0] = leafPos;
         $leafPosition = leafTrackingArray[0];
@@ -52,17 +54,68 @@ ladybug.leafRandomize = () => {
 ladybug.finalPositionCalc = () => {
     let finalPosition = 91;
     movementQueueArray.forEach(function (movement) {
-        if (movement === "upButton" && finalPosition > 10) {
+        if (movement === "upButton" && finalPosition > 10 && !(stickPositionArray[0].includes(finalPosition - 10)) && !(stickPositionArray[1].includes(finalPosition - 10)) && !(stickPositionArray[2].includes(finalPosition - 10))) {
             finalPosition -= 10;
-        } else if (movement === "downButton" && finalPosition <= 90) {
+        } else if (movement === "downButton" && finalPosition <= 90 && !(stickPositionArray[0].includes(finalPosition + 10)) && !(stickPositionArray[1].includes(finalPosition + 10)) && !(stickPositionArray[2].includes(finalPosition + 10))) {
             finalPosition += 10;
-        } else if (movement === "leftButton" && finalPosition % 10 != 1) {
+        } else if (movement === "leftButton" && finalPosition % 10 != 1 && !(stickPositionArray[0].includes(finalPosition - 1)) && !(stickPositionArray[1].includes(finalPosition - 1)) && !(stickPositionArray[2].includes(finalPosition - 1))) {
             finalPosition -= 1;
-        } else if (finalPosition % 10 != 0) {
+        } else if (movement === "rightButton" && finalPosition % 10 != 0 && !(stickPositionArray[0].includes(finalPosition + 1)) && !(stickPositionArray[1].includes(finalPosition + 1)) && !(stickPositionArray[2].includes(finalPosition + 1))) {
             finalPosition += 1;
         };
     });
     return finalPosition;
+};
+
+let stickPositionArray = [[],[],[]];
+
+ladybug.stickRandomize = (numberOfSticks) => {
+    for (let i = 0; i < numberOfSticks; i++) {
+        let arrayOfArrays = [];
+        const stickOrientationRandomize = ((Math.floor(Math.random() * 2)) === 1) ? "vertical" : "horizontal";
+        console.log("stick orientation randomize", i, stickOrientationRandomize)
+        if (stickOrientationRandomize === "vertical") {
+            ladybug.stickPositionVertical = () => {
+                const stickVertical = (Math.floor(Math.random() * 60)) + 1;
+                if (stickVertical === 51 || stickVertical === stickPositionArray[0][0] || stickVertical === stickPositionArray[1][0] || stickVertical === stickPositionArray[2][0]) {
+                    return ladybug.stickPositionVertical();
+                } else {
+                    return stickVertical;
+                };
+            };
+            const stickPosition = ladybug.stickPositionVertical();
+            for (let i = 0; i < 5; i++) {
+                const stickSegment = stickPosition + (i * 10);
+                if ($leafPosition === stickSegment) {
+                    ladybug.leafReset();
+                };
+                // stickPositionArray[i].push(stickSegment);
+                arrayOfArrays.push(stickSegment);
+            };
+            stickPositionArray.splice(i, 1, arrayOfArrays)
+            stickDrawing[i] = `<img src="./assets/branch.png" alt="Troublesome tree branch blocking our bug" class="treeBranch">`;
+        } else if (stickOrientationRandomize === "horizontal"){
+            ladybug.stickPositionHorizontal = () => {
+                const stickHorizontal = (Math.floor(Math.random() * 100)) + 1;
+                if (stickHorizontal === 91 || stickHorizontal % 10 > 6 || stickHorizontal % 10 === 0 || stickHorizontal === stickPositionArray[0][0] || stickHorizontal === stickPositionArray[1][0] || stickHorizontal === stickPositionArray[2][0]) {
+                    return ladybug.stickPositionHorizontal();
+                } else {
+                    return stickHorizontal;
+                };
+            };
+            const stickPosition = ladybug.stickPositionHorizontal();
+            for (let i = 0; i < 5; i++) {
+                const stickSegment = stickPosition + i;
+                if ($leafPosition === stickSegment) {
+                    ladybug.leafReset();
+                };
+                // stickPositionArray[i].push(stickSegment);
+                arrayOfArrays.push(stickSegment);
+            }
+            stickPositionArray.splice(i, 1, arrayOfArrays)
+            stickDrawing[i] = `<img src="./assets/branch.png" alt="Troublesome tree branch blocking our bug" class="treeBranch treeBranchRotate">`;
+        };
+    };
 };
 // ---------------------------------------------------------
 
@@ -95,9 +148,11 @@ ladybug.gameReset = () => {
     runTracker = 0;
     gameTracker = 0;
     winTracker = 0;
-    queueTracker = 0;
+    queueProgressTracker = 0;
+    queueIndexTracker = 0;
     ladybug.bugReset();
     ladybug.leafReset();
+    ladybug.stickReset();
 };
 
 ladybug.bugReset = () => {
@@ -111,9 +166,32 @@ ladybug.bugReset = () => {
 };
 
 ladybug.leafReset = () => {
+    $(`.item${$leafPosition}`).html("")
     ladybug.leafRandomize();
     ladybug.drawFunction($leafPosition, leafDrawing);
 };
+
+ladybug.stickReset = () => {
+    $(`.item${stickPositionArray[0][0]}`).html("")
+    $(`.item${stickPositionArray[1][0]}`).html("")
+    $(`.item${stickPositionArray[2][0]}`).html("")
+    // stickPositionArray.length = 0;
+    stickPositionArray = [[],[],[]];
+    ladybug.stickRandomize(3);
+    ladybug.drawFunction(stickPositionArray[0][0], stickDrawing[0])
+    ladybug.drawFunction(stickPositionArray[1][0], stickDrawing[1])
+    ladybug.drawFunction(stickPositionArray[2][0], stickDrawing[2])
+
+
+}
+
+ladybug.newGameCheck = () => {
+    if (confirm("Are you sure you wish to start a new game?")) {
+        ladybug.gameReset();
+    } else {
+        null;
+    }
+}
 // ---------------------------------------------------------
 
 
@@ -125,17 +203,21 @@ $(".button").click(function () {
         if (runTracker === 0) {
             alert("The poor ladybug is confused, she needs to know where to go first! \n\nPlease give her some directions.");
         } else if (gameTracker === 1 && winTracker === 0) {
-            alert("Ladybug is all out of moves. \n\nPlease hit reset button to play again.");
+            alert("RUNLadybug is all out of moves. \n\nPlease hit reset button to play again. \n\nIf the level is too challenging, try hitting the NEW GAME button instead.");
         } else {
             gameTracker = 1;
             finalPositionTracker = ladybug.finalPositionCalc();
             movementQueueArray.forEach(function(movement, index) {
+                queueIndexTracker = movementQueueArray.length - 1;
                 setTimeout(function() {
                     ladybug.buttonAction(movement);
-                }, index * 1000);
+                    if (queueIndexTracker === index) {
+                        alert("OH NO! Poor little ladybug did what you said, but never found a shady spot to rest... \n\nPlease hit the RESET button to play again. \n\nIf the level is too challenging, try hitting the NEW GAME button instead.");
+                    }
+                }, index * 750);
             });
             movementQueueArray.length = 0;
-            queueTracker = 1;
+            queueProgressTracker = 1;
         };
     } else if (buttonType === "resetButton") {
         if (movementQueueArray[0] === undefined && runTracker === 0) {
@@ -149,19 +231,22 @@ $(".button").click(function () {
                 ladybug.bugReset();
                 runTracker = 0;
                 gameTracker = 0;
-                queueTracker = 0;
+                queueProgressTracker = 0;
+                queueIndexTracker = 0;
             } else {
                 ladybug.gameReset();
             }
         };
+    } else if (buttonType === "newGameButton") {
+        ladybug.newGameCheck();
     } else if (buttonType === "closeInstructions") {
         $(".instructionsWrapper").toggleClass("hidden");
     } else if (buttonType === "openInstructions") {
         $(".instructionsWrapper").toggleClass("hidden");
     } else {
         if (gameTracker === 1 && winTracker === 0) {
-            alert("Ladybug is all out of moves. \n\nPlease hit reset button to play again.");
-        } else if (queueTracker === 1) {
+            alert("OTHERLadybug is all out of moves. \n\nPlease hit RESET button to play again.\n\n If the level is too challenging, try hitting the NEW GAME button instead.");
+        } else if (queueProgressTracker === 1) {
             alert("I know she is ponderous and slow, but let her get where's going first or she'll get lost and confused!");
         } else {
             movementQueueArray.push(buttonType);
@@ -173,7 +258,7 @@ $(".button").click(function () {
 
 ladybug.buttonAction = (buttonType) => {
     if (buttonType === "upButton") {
-        if ((ladybugTrackingArray[0] - 10) > 0) {
+        if ((ladybugTrackingArray[0] - 10) > 0 && !(stickPositionArray[0].includes(ladybugTrackingArray[0] - 10)) && !(stickPositionArray[1].includes(ladybugTrackingArray[0] - 10)) && !(stickPositionArray[2].includes(ladybugTrackingArray[0] - 10))) {
             const newPosition = $ladybugPosition - 10;
             $(".bugBody").remove();
             ladybugTrackingArray.splice(0, 1, newPosition);
@@ -181,7 +266,7 @@ ladybug.buttonAction = (buttonType) => {
             ladybug.gameWinCheck();
         };
     } else if (buttonType === "downButton") {
-        if ((ladybugTrackingArray[0] + 10) <= 100) {
+        if ((ladybugTrackingArray[0] + 10) <= 100 && !(stickPositionArray[0].includes(ladybugTrackingArray[0] + 10)) && !(stickPositionArray[1].includes(ladybugTrackingArray[0] + 10)) && !(stickPositionArray[2].includes(ladybugTrackingArray[0] + 10))) {
             const newPosition = $ladybugPosition + 10;
             $(".bugBody").remove();
             ladybugTrackingArray.splice(0, 1, newPosition);
@@ -189,7 +274,7 @@ ladybug.buttonAction = (buttonType) => {
             ladybug.gameWinCheck();
         };
     } else if (buttonType === "leftButton") {
-        if ((ladybugTrackingArray[0] - 1) % 10 != 0) {
+        if (((ladybugTrackingArray[0] - 1) % 10 != 0) && !(stickPositionArray[0].includes(ladybugTrackingArray[0] - 1)) && !(stickPositionArray[1].includes(ladybugTrackingArray[1] - 1)) && !(stickPositionArray[2].includes(ladybugTrackingArray[1] - 1))) {
             const newPosition = $ladybugPosition - 1;
             $(".bugBody").remove();
             ladybugTrackingArray.splice(0, 1, newPosition);
@@ -197,7 +282,7 @@ ladybug.buttonAction = (buttonType) => {
             ladybug.gameWinCheck();
         };
     } else if (buttonType === "rightButton") {
-        if ((ladybugTrackingArray[0] + 1) % 10 != 1) {
+        if (((ladybugTrackingArray[0] + 1) % 10 != 1) && !(stickPositionArray[0].includes(ladybugTrackingArray[0] + 1)) && !(stickPositionArray[1].includes(ladybugTrackingArray[0] + 1)) && !(stickPositionArray[2].includes(ladybugTrackingArray[0] + 1))) {
             const newPosition = $ladybugPosition + 1;
             $(".bugBody").remove();
             ladybugTrackingArray.splice(0, 1, newPosition);
@@ -216,8 +301,12 @@ ladybug.buttonAction = (buttonType) => {
 // INIT===================================================
 ladybug.init = () => {
     ladybug.leafRandomize();
+    ladybug.stickRandomize(3);
     ladybug.drawFunction($ladybugPosition, ladybugDrawing);
     ladybug.drawFunction($leafPosition, leafDrawing);
+    ladybug.drawFunction(stickPositionArray[0], stickDrawing[0]);
+    ladybug.drawFunction(stickPositionArray[1], stickDrawing[1]);
+    ladybug.drawFunction(stickPositionArray[2], stickDrawing[2]);
 };
 // =======================================================
 
