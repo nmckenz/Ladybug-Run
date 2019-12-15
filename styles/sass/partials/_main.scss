@@ -160,7 +160,6 @@ body p {
 // ----------------------------------------
 // begin button styling
 .buttonWrapper {
-    // margin-top: 35px;
     text-align: center;
 }
 
@@ -190,6 +189,10 @@ button {
     text-transform: uppercase;
     font-size: 1rem;
     background: #feffe4;
+}
+
+button:focus, button:hover {
+    background: #87f14ea9;
 }
 // end button styling
 // -----------------------------------------

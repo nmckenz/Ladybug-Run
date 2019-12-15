@@ -444,6 +444,10 @@ button {
   background: #feffe4;
 }
 
+button:focus, button:hover {
+  background: #87f14ea9;
+}
+
 .arena {
   display: -ms-grid;
   display: grid;
