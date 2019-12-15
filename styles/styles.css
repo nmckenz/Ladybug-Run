@@ -482,6 +482,9 @@ button {
   height: 250px;
   width: 25px;
   position: absolute;
+}
+
+.treeBranchRotate {
   -webkit-transform-origin: right 15px;
           transform-origin: right 15px;
   -webkit-transform: rotate(-90deg);
