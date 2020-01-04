@@ -1,4 +1,4 @@
-# nicholasMckenzieProjectThree
+# Ladybuy Run
 
 Inspired by a coding toy my son has that is supposed to help him understand concepts from object oriented programming and encourage his skills in problem solving, planning & sequencing and critical thinking.
 The application is a game whereby the user:
