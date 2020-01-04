@@ -6,4 +6,4 @@ The application is a game whereby the user:
 - the choices are queued
 - when the ladybug is instructed to “execute” instructions, it will move as dictated by modules in sequential (“top down”) order
 
-https://nmckenz.github.io/nicholasMckenzieProjectThree/
+https://nmckenz.github.io/Ladybug-Run/
